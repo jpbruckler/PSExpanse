@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Types>
+    <Type>
+        <Name>TemplateElement</Name>
+        <Members>
+            <ScriptProperty>
+                <Name>Content</Name>
+                <GetScriptBlock>
+                    if ($this -is [TextElement]) {
+                    return $this.Content
+                    } elseif ($this -is [FunctionElement]) {
+                    return $this.FunctionName
+                    } else {
+                    return $null
+                    }
+                </GetScriptBlock>
+            </ScriptProperty>
+        </Members>
+    </Type>
+    <Type>
+        <Name>TextElement</Name>
+        <Members>
+            <ScriptProperty>
+                <Name>Content</Name>
+                <GetScriptBlock>
+                    return $this.Content
+                </GetScriptBlock>
+                <SetScriptBlock>
+                    $this.Content = $args[0]
+                </SetScriptBlock>
+            </ScriptProperty>
+        </Members>
+    </Type>
+    <Type>
+        <Name>FunctionElement</Name>
+        <Members>
+            <ScriptProperty>
+                <Name>FunctionName</Name>
+                <GetScriptBlock>
+                    return $this.FunctionName
+                </GetScriptBlock>
+                <SetScriptBlock>
+                    $this.FunctionName = $args[0]
+                </SetScriptBlock>
+            </ScriptProperty>
+            <ScriptProperty>
+                <Name>Arguments</Name>
+                <GetScriptBlock>
+                    return $this.Arguments
+                </GetScriptBlock>
+                <SetScriptBlock>
+                    $this.Arguments = $args[0]
+                </SetScriptBlock>
+            </ScriptProperty>
+        </Members>
+    </Type>
+</Types>
